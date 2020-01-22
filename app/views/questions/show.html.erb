@@ -1,0 +1,26 @@
+<h2><%= @question.title %></h2>
+<p> <%= @question.body %> </p>
+
+
+
+<% if  @question.answers.any? %>
+<h2>answers:</h2>
+<ul>
+  <% @question.answers.each do |answer| %>
+  <li><%= link_to answer.title, question_answer_path(@question, answer) %></li>
+  <p><%= answer.body %></p>
+  <% end %>
+</ul>
+<% else %>
+<p>There are no answers yet!</p>
+<% end %>
+
+
+<p><%= link_to "Add an answer!", new_question_answer_path(@question) %></p>
+
+<p><%= link_to "Edit", edit_question_path(@question) %></p>
+<p><%= link_to "Delete question", question_path(@question),
+  :data => {:confirm => "Are you sure?",
+  :method => "delete"} %></p>
+
+  <p><%= link_to "Return to questions", questions_path %></p>

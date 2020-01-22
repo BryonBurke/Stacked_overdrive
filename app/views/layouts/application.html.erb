@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>StackedOverdrive</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+</head>
+
+<body>
+  <div class="container">
+<div class="jumbotron">
+<h1>Stacked Overdrive</h1>
+<% if (current_user) && (current_user.admin = true) %>
+<%= link_to "Sign up new user", '/signup' %> | <%= link_to "All users", '/users' %>
+<% end %>
+</div>
+<%= flash[:alert] %>
+<%= flash[:notice] %>
+  <% if current_user %>
+  <%= current_user.name %> | <%= link_to "Sign out", '/signout' %> |
+  <% else %>
+  <%= link_to "Sign up", 'signup' %> | <%= link_to "Sign in", '/signin' %>
+  <% end %>
+
+  <%= yield %>
+</div>
+</body>
+</html>

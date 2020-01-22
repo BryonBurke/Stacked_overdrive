@@ -1,0 +1,15 @@
+<h1>Users</h1>
+
+
+<% if  @users.any? %>
+<ul>
+  <% @users.each do |user| %>
+  <li><%= user.name %></li>
+  <% end %>
+</ul>
+<% else %>
+<p>There are no users yet!</p>
+<% end %>
+
+
+<p><%= link_to "add user", "/signup"%></p>
